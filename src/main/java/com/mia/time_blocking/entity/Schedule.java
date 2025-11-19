@@ -5,12 +5,13 @@ import com.mia.time_blocking.entity.common.ScheduleBase;
 import com.mia.time_blocking.type.YesNo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
-@AllArgsConstructor
+@Setter
+@NoArgsConstructor
 public class Schedule extends ScheduleBase {
     @Id @GeneratedValue
     @Column(name = "schedule_id")
@@ -33,8 +34,6 @@ public class Schedule extends ScheduleBase {
 
     @OneToOne(mappedBy = "schedule")
     private Feedback feedback;
-
-
 
 
 }

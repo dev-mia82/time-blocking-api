@@ -18,12 +18,12 @@ import java.util.List;
 public class Todo extends ScheduleBase {
     @Id
     @GeneratedValue
-    @Column(name = "base_id")
+    @Column(name = "todo_id")
     @Schema(description = "할일 PK")
     private Long id;
 
     @Schema(description = "소속 월")
-    private LocalDate month;
+    private LocalDate todoMonth;
 
     @OneToMany(mappedBy = "todo")
     private List<Schedule> schedule = new ArrayList<>();

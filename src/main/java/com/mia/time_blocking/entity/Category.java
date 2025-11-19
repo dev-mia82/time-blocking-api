@@ -1,15 +1,16 @@
 package com.mia.time_blocking.entity;
 
+import com.mia.time_blocking.type.Color;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
-import java.awt.*;
 import java.time.LocalDate;
 
 @Entity
 @Getter
-@AllArgsConstructor
+@Builder
 public class Category {
     @Id
     @GeneratedValue

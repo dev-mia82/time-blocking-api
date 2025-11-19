@@ -6,11 +6,17 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-server:
-  port: 80
-jpa:
-  hibernate:
-    ddl-auto: create
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 logging:
   level:
     org.hibernate.SQL: debug
+server:
+  port: 80
+
+

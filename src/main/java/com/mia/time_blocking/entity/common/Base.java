@@ -2,21 +2,18 @@ package com.mia.time_blocking.entity.common;
 
 import com.mia.time_blocking.type.YesNo;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Base {
+@Setter
+@MappedSuperclass
+public abstract class Base {
     @Column
     @Schema(description = "등록일")
     private LocalDate createdAt;

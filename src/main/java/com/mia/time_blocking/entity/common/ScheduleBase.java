@@ -4,16 +4,17 @@ import com.mia.time_blocking.entity.Category;
 import com.mia.time_blocking.type.Priority;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class ScheduleBase extends Base{
+@Setter
+@MappedSuperclass
+public abstract class ScheduleBase extends Base{
 
     @Schema(description = "중요도")
     @Enumerated(EnumType.STRING)
