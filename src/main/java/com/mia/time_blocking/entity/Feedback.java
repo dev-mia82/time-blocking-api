@@ -1,16 +1,14 @@
 package com.mia.time_blocking.entity;
 
-import com.mia.time_blocking.entity.common.Base;
 import com.mia.time_blocking.type.Emotion;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 @Entity
-@AllArgsConstructor
 @Getter
-public class Feedback extends Base {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Feedback {
     @Id @GeneratedValue
     @Column(name = "feedback_id")
     @Schema(description = "회고 PK")
@@ -28,5 +26,15 @@ public class Feedback extends Base {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
+    @Builder
+    public Feedback(Emotion emotion, String content, Schedule schedule) {
+        this.emotion = emotion;
+        this.content = content;
+        this.schedule = schedule;
+    }
 
+    public void update(Emotion emotion, String content) {
+        this.emotion = emotion;
+        this.content = content;
+    }
 }

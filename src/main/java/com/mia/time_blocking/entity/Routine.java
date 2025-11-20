@@ -1,24 +1,22 @@
 package com.mia.time_blocking.entity;
 
-import com.mia.time_blocking.entity.common.Base;
 import com.mia.time_blocking.entity.common.ScheduleBase;
 import com.mia.time_blocking.type.Priority;
 import com.mia.time_blocking.type.RoutineType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@AllArgsConstructor
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Routine extends ScheduleBase {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "routine_id")
     @Schema(description = "루틴 PK")
     private Long id;
@@ -38,5 +36,20 @@ public class Routine extends ScheduleBase {
     @Schema(description = "일정")
     @OneToMany(mappedBy = "routine")
     private List<Schedule> schedule = new ArrayList<>();
+
+    @Builder
+    public Routine(Priority priority, String memo, Category category, String title, LocalTime bgngTime, LocalTime endTime, RoutineType type, LocalDate settingBgngDate, LocalDate settingEndDate) {
+        super(priority,memo,category,title,bgngTime,endTime );
+        this.type = type;
+        this.settingBgngDate = settingBgngDate;
+        this.settingEndDate = settingEndDate;
+    }
+
+    public void update(Priority priority, String memo, Category category, String title, LocalTime bgngTime, LocalTime endTime, RoutineType type, LocalDate settingBgngDate, LocalDate settingEndDate) {
+        super.update(priority, memo, category, title, bgngTime, endTime);
+        this.type =type;
+        this.settingBgngDate =settingBgngDate;
+        this.settingEndDate = settingEndDate;
+    }
 
 }
